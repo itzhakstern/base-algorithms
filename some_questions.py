@@ -111,4 +111,18 @@ def findCircleNum(isConnected):
             BFS(isConnected, i, visit)
     return c
 
+def clocke_angle(time):
+    """
+    The angle between the hour hand and the minute hand
+    :param time: A string that represent a time for example 06:17
+    """
+    split_time = time.split(":")
+    hour = int(split_time[0])
+    minute = int(split_time[1])
+    minute_angle = 360 * minute/60
+    hour_angle = 360 * (hour % 12) / 12 + 360 * (minute/60) * 1/12
+    angle = (hour_angle - minute_angle) % 360
+    return 360 - angle
+
+
 
