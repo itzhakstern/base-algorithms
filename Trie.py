@@ -57,10 +57,10 @@ class Tries:
         suf = []
         for c in pre.children:
             x = pre.children[c]
-            self.find_prefix_helper(pre.children[c], prefix+c, suf, suffix)
+            self.__find_prefix_helper(pre.children[c], prefix+c, suf, suffix)
         return suf
 
-    def find_prefix_helper(self, node, word, suffix, s):
+    def __find_prefix_helper(self, node, word, suffix, s):
         cur = node
         w = ''
         for c in s:
@@ -94,7 +94,7 @@ class Tries:
                 return
         return cur.num_appears
 
-    def num_words(self, prefix):
+    def num_words_with_prefix(self, prefix):
         num = [0]
         if not prefix:
             self.num_words_helper(self.root, num)
@@ -107,29 +107,29 @@ class Tries:
             cur = cur.children[c]
         if cur.word:
             num[0] += 1
-        self.num_words_helper(cur,num)
+        self.__num_words_helper(cur,num)
         return num[0]
 
-    def num_words_helper(self, char, num):
+    def __num_words_helper(self, char, num):
         if not char.children:
             return 0
         for c in char.children:
             if char.children[c].word:
                 num[0] = num[0]+1
-            self.num_words_helper(char.children[c], num)
+            self.__num_words_helper(char.children[c], num)
 
     def print_all(self):
-        self.print_helper(self.root, "")
+        self.__print_helper(self.root, "")
 
-    def print_helper(self, node, word):
+    def __print_helper(self, node, word):
         if not node.children:
             return
         for char in node.children:
             if not node.children[char].word:
-                self.print_helper(node.children[char], word + char)
+                self.__print_helper(node.children[char], word + char)
             else:
                 print(word + char)
-                self.print_helper(node.children[char], word + char)
+                self.__print_helper(node.children[char], word + char)
 
 
 words_lib = Tries()
