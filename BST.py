@@ -77,17 +77,3 @@ class BST:
 # tree.insert(0)
 # tree.print_all()
 # print(tree.minDepth())
-
-def clocke_angle(time):
-    split_time = time.split(":")
-    hour = int(split_time[0])
-    minute = int(split_time[1])
-    minute_angle = 360 * minute/60
-    print("minute = ", minute_angle)
-    hour_angle = 360 * (hour % 12) / 12 + 360 * (minute/60) * 1/12
-    print("hour = ", hour_angle)
-    angle = (hour_angle - minute_angle) % 360
-
-    return 360 - angle
-
-print(clocke_angle("06:35"))
